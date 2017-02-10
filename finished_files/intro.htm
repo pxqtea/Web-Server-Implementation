@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HTTP Server Illustration</title>
+<link href="_css/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<header role="banner">
+  <h1>Designed as a breif introduction of the server </h1>
+  <h2>HTTP Server Illustration</h2>
+<!--
+<content for="top"><h4>CONTANT</h4>
+<a href="#Multi-threaded server">Multi-threaded server</a> |
+<a href="#Scheduling Policies">Scheduling Policies</a> |
+<a href="#Handle both static and dynamic requests">Handle both static and dynamic requests</a>
+</content>
+
+  <nav role="navigation">
+    <ul>
+      <li><a href="https://www.osha.gov/SLTC/medicalfirstaid/index.html" title="Medical Safety">Medical Safety</a></li>
+      <li><a href="http://dc-pubs.dbs.uni-leipzig.de/files/FrameworksForEntityMatchingAComparison_dke.pdf" title="Entity Matching">Entity Matching</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Natural_language_processing" title="Natural Language Processing">Natural Language Processing</a></li>
+      <li><a href="http://www.sas.com/en_us/insights/analytics/machine-learning.html" title="Machine Learning">Machine Learning</a></li>
+    </ul>
+  </nav>
+-->
+</header>
+<main role="main">
+  <article role="article">
+    <header>
+      <p><img src="_images/html_server.png" alt="HTML" width="496" height="156" class="flowRight">A real, working, multi-threaded  <b>web server</b>  was developed. Three key pieces of functionality were implemented. First, the web server is <b> multi-threaded</b>. Second, <b>different scheduling policies</b> were implemented so that requests are serviced in different orders. Third, the server is able to handle both <b>static and dynamic</b> requests.</p>
+    </header>
+    <section>
+      <h3>Multi-threaded server</h3>
+	<p> Single-threaded web servers suffer from a fundamental performance problem in that only a single HTTP request can be serviced at a time. Thus, every other client that is accessing this web server must wait until the current http request has finished; this is especially a problem if the current http request is a long-running CGI program or is resident only on disk (i.e., is not in memory). Thus, the most important extension that was added is to make the web server multi-threaded by creating a <b>fixed-size pool</b> of worker threads when the web server is first started. </p> 
+
+    </section>
+    <section>
+      <h3>Scheduling Policies</h3>
+	<p>
+The role of scheduling is to determine which http request should be handled by each of the waiting worker threads in the web server.
+	</p>
+
+	<h4> First-in-First-out (FIFO):</h4>
+	<p>
+When a worker thread wakes, it handles the first request (i.e., the oldest request) in the buffer.
+	</p>
+
+	<h4>Smallest File First (SFF):</h4>
+	<p>
+When a worker thread wakes, it handles the request for the smallest file. This policy approximates Shortest Job First to the extent that the size of the file is a good prediction of how long it takes to service that request.
+	</p>
+	<h4>Smallest File First with Bounded Starvation (SFF-BS):</h4>
+	<p>
+This policy mimicks SFF but guarantees starving jobs will get serviced eventually. It does so by dividing requests into epochs; an epoch is defined as a group of N requests. No request in epoch X+1 should be serviced before all requests in epoch X are complete. N, of course, can be varied.
+	</p>
+
+	<h3>Handle both static and dynamic requests</h3>
+	<p>
+If a client requests a specific disk file, then this is referred to as <b>static content</b>. If a client requests that <b>a executable file be run</b> and its output returned, then this is dynamic content.
+	</p>
+      </ol>
+    </section>
+  </article>
+</main>
+<footer role="contentinfo">
+        <p>&copy; <a href="_images/resume_xueqin.pdf" title="Xueqin Pang" target="_blank">Xueqin Pang UW-Madison</a> | Find me on Linkedin or GitHub! <a href="https://www.linkedin.com/in/xueqin-pang-33220560" title="Linkedin">@Xueqin Pang Linkedin</a> <a href="https://github.com/pxqtea" title="Find my code on github">@Xueqin Pang GitHub</a></p>
+</footer>
+</body>
+</html>

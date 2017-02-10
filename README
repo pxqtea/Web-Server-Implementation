@@ -1,0 +1,46 @@
+A HTTP based multi-threaded web server is implemented. It is currently servered as my personal website and after our CCS Predictor project finished we will put our CCS database and prediction jobs onto this server.
+
+#################################
+#       start the server        #
+#################################
+The server can be started by: 
+./server [portnum] [threads] [buffers] [schedalg] [N (for SFF-BS only)]
+
+▪ portnum: the port number that the web server should listen on.
+
+▪ threads: the number of worker threads that should be created within the
+web server. Must be a positive integer.
+
+▪ buffers: the number of request connections that can be accepted at one
+time. Must be a positive integer. Note that it is not an error for
+more or less threads to be created than buffers.
+
+▪ schedalg: the scheduling algorithm to be performed. Must be one of
+FIFO or SFF or SFF-BS.
+
+▪ N: the value N for SFF-BS only, as described above.
+
+For example, if you run your program as: ./server 2010 8 32 SFF 
+then your web server will listen to port 2010, create 8 worker threads for handling http requests, allocate 32 buffers for connections that are currently in progress (or waiting), and use SFF scheduling for arriving requests. 
+
+
+##########################################
+#       browse the sample webpage        #
+##########################################
+You can browse the sample webpage on the machine where the server runs through the following URL: 
+http://[machine_id]:[portnum]/finished_files/intro.htm
+For example: if my server is run on emperor-01.cs.wisc.edu and listening on port number 2010, the URL would be  
+http://emperor-01.cs.wisc.edu:2010/finished_files/intro.htm
+
+
+##########################################
+#       Test cases included              #
+##########################################
+Test cases used to ensure the performance of the server were included in testcases folder. 
+Test can be started by running the code with python. 
+For example, if test1 will be performed, you can simply using the following command:
+python testcases/test1.py  
+
+
+
+
